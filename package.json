@@ -1,0 +1,29 @@
+{
+  "name": "yelpme",
+  "version": "1.0.0",
+  "description": "Alexa skill that interfaces with the Yelp API",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "keywords": [
+    "yelp",
+    "find",
+    "search",
+    "restaurant",
+    "local",
+    "food"
+  ],
+  "author": "Edgar Cobos",
+  "license": "ISC",
+  "alexa": {
+    "applicationId": "amzn1.ask.skill.dd2d38fc-8229-476a-b451-7adf778746d1"
+  },
+  "dependencies": {
+    "alexa-sdk": "^1.0.6",
+    "aws-sdk": "^2.7.15",
+    "chai": "^3.5.0",
+    "dynasty": "^0.2.6",
+    "mocha": "^3.2.0"
+  }
+}
