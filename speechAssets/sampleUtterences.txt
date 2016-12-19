@@ -1,0 +1,10 @@
+SetLocation set my location to {city}
+SetLocation my location is {city}
+SetLocation set my location to {zip}
+SetLocation my location is {zip}
+SetLocation {city}
+SetLocation {zip}
+
+SelectFoodType {foodType}
+SelectFoodType I want {foodType}
+SelectFoodType I choose {foodType}

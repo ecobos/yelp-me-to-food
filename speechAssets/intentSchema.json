@@ -1,0 +1,53 @@
+{
+  "intents": [
+    {
+      "intent": "SetLocation",
+      "slots": [
+        {
+          "name": "city",
+          "type": "AMAZON.US_CITY"
+        },
+        {
+          "name": "zip",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "GetLocalRestaturantByTerm",
+      "slots": [
+        {
+          "name": "location",
+          "type": "AMAZON.US_CITY"
+        }
+      ]
+    },
+    {
+      "intent": "SelectFoodType",
+      "slots": [
+        {
+          "name": "foodType",
+          "type": "FOOD_TYPE"
+        }
+      ]
+    },
+    {
+      "intent": "GetLocalRestaurantByRating"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+ }
