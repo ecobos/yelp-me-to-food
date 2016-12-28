@@ -5,6 +5,5 @@ SetLocation my location is {zip}
 SetLocation {city}
 SetLocation {zip}
 
-SelectFoodType {foodType}
-SelectFoodType I want {foodType}
-SelectFoodType I choose {foodType}
+TypeSelected {foodType}
+FindFood {priceType}
