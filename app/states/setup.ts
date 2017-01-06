@@ -1,5 +1,7 @@
+import { CreateStateHandler } from "alexa-sdk";
+import { STATE } from "./definitions"
 
-var setupHandlers = Alexa.CreateStateHandler(states.SETUPMODE, {
+export let setupModeHandler = CreateStateHandler(STATE.SETUPMODE, {
     'NewSession': function () {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
@@ -14,8 +16,8 @@ var setupHandlers = Alexa.CreateStateHandler(states.SETUPMODE, {
        this.emit(':ask', 'I heard '+ location + '. Is that correct?');
     },
     'AMAZON.YesIntent': function() {
-        this.handler.state = states.MAINMODE;
-        this.emit(':tell', "Great! You're location has been set. Let's get started, how can I help?");
+        this.handler.state = STATE.MAINMODE;
+        this.emit(':ask', "Great! Your location has been set. Let's get started, how can I help?");
     },
     'AMAZON.HelpIntent': function() {
         var message = 'In order to provide useful information, I need to know your search location.';
@@ -27,6 +29,7 @@ var setupHandlers = Alexa.CreateStateHandler(states.SETUPMODE, {
     },
     'SessionEndedRequest': function () {
         console.log('Setupmode session ended!');
+        this.emit(':saveState', true);
     },
     'Unhandled': function() {
         var message = 'Say yes to continue, or no to end the game.';

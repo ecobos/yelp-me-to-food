@@ -14,14 +14,17 @@
     "local",
     "food"
   ],
-  "author": "Edgar Cobos",
+  "author": "Edgar Cobos <dev@edcobos.com>",
   "license": "ISC",
   "alexa": {
     "applicationId": "amzn1.ask.skill.dd2d38fc-8229-476a-b451-7adf778746d1"
   },
   "dependencies": {
+    "@types/node": "^6.0.56",
     "alexa-sdk": "^1.0.6",
+    "aws-lambda-mock-context": "^3.0.1",
     "aws-sdk": "^2.7.15",
+    "bluebird": "^3.4.7",
     "chai": "^3.5.0",
     "dynasty": "^0.2.6",
     "mocha": "^3.2.0"

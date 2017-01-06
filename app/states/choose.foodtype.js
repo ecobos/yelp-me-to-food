@@ -1,8 +1,8 @@
-var chooseTypeHandlers = Alexa.CreateStateHandler(states.CHOOSETYPE, {
+module.exports = Alexa.CreateStateHandler(states.CHOOSETYPE, {
     'NewSession': function () {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
-    'TypeSelected': function() {
+    'FoodTypeSelected': function() {
         this.attributes.foodType = this.event.request.intent.slots.foodType.value;
         this.handler.state = states.CHOOSEPRICE;
         this.emit(':ask', "Okay, do you want cheap, affordable or fancy?");
@@ -16,7 +16,6 @@ var chooseTypeHandlers = Alexa.CreateStateHandler(states.CHOOSETYPE, {
         //this.emit(':saveState', true);
     },
     'Unhandled': function() {
-        var message = 'Say yes to continue, or no to end the game.';
-        this.emit(':ask', message, message);
+        this.emit(':tell', "Sorry, that request is not handled. Choose type state");
     }
 });

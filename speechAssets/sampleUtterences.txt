@@ -5,5 +5,11 @@ SetLocation my location is {zip}
 SetLocation {city}
 SetLocation {zip}
 
-TypeSelected {foodType}
-FindFood {priceType}
+FindFood find food
+FindFood find food for me
+
+FoodTypeSelected {foodType}
+FoodTypeSelected {foodType} food
+FoodTypeSelected {foodType} restaurant
+
+PriceSelected {priceType}

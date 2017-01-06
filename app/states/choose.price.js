@@ -1,11 +1,11 @@
-var choosePriceHandlers = Alexa.CreateStateHandler(states.CHOOSEPRICE, {
+module.exports = Alexa.CreateStateHandler(states.CHOOSEPRICE, {
     'NewSession': function () {
         this.emit('NewSession'); // Uses the handler in newSessionHandlers
     },
     'PriceSelected': function() {
         this.attributes.priceType = this.event.request.intent.slots.priceType.value;
         this.handler.state = states.RESULTSMODE;
-        this.emit(':ask', "Okay, do you want cheap, affordable or fancy?");
+        this.emit('GetFoodByTypeAndPrice');
     },
     'AMAZON.HelpIntent': function() {
         var message = "You can say either cheap for something under $10, affordable for something under $20 or fancy for something above $20";

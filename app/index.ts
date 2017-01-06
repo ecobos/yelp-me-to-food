@@ -1,13 +1,14 @@
-/* jshint node: true */
-/*jshint esversion: 6 */
-'use strict';
+import * as Alexa from "alexa-sdk";
+import * as setupHandlers from "./states/setup";
 
-const Alexa = require('alexa-sdk');
-const local = require('./app/GetLocalRestaurant');
+import * as mainHandlers from "./states/main";
+import * as resultsHandlers from "./states/results";
+import * as choosePriceHandlers from "./states/choose.price";
+import * as chooseFoodtypeHandlers from "./states/choose.foodtype";
 
-const APP_ID = 'amzn1.ask.skill.dd2d38fc-8229-476a-b451-7adf778746d1';
+let APP_ID = 'amzn1.ask.skill.dd2d38fc-8229-476a-b451-7adf778746d1';
 
-const languageStrings = {
+let languageStrings = {
     'en-US': {
         translation: {
             SKILL_NAME: 'Yelp Me To Food',
@@ -19,7 +20,7 @@ const languageStrings = {
     }
 };
 
-var states = {
+let states = {
     SETUPMODE: '_SETUPMODE', // Setup a user's search location
     MAINMODE: '_MAINMODE',  // Prompt the user to start or restart the session.
     RESULTSMODE: '_RESULTSMODE', // User wants more information a specific venue
@@ -27,18 +28,11 @@ var states = {
     CHOOSEPRICE: '_CHOOSEPRICE'
 };
 
-const handlers = {
+let handlers: Alexa.Handlers = {
     'LaunchRequest': function () {
         this.emit(':tell', this.t('WELCOME_MESSAGE')); // Likely wont get used
     },
-    'GetLocalRestaturantByTerm': function () {
-        var term =  this.event.request.intent.slots.term.value;
-        var location = this.event.request.intent.slots.location.value;
-        const self = this;
-        local.GetLocalRestaturantByTerm(term, location, function(response){
-            self.emit(':tell', 'Sounds good. Here is what I found on Yelp. ' + response);
-        });
-    },
+
     'AMAZON.HelpIntent': function () {
         const speechOutput = this.t('HELP_MESSAGE');
         const reprompt = this.t('HELP_MESSAGE');
@@ -55,7 +49,7 @@ const handlers = {
     },
 };
 
-var newSessionHandlers = {
+let newSessionHandlers: Alexa.Handlers = {
     'NewSession': function() {
 
         var location = this.attributes.location;
@@ -73,14 +67,12 @@ var newSessionHandlers = {
     }
 };
 
-exports.handler = (event, context) => {
-    const alexa = Alexa.handler(event, context);
-    alexa.APP_ID = APP_ID;
-    // To enable string internationalization (i18n) features, set a resources object.
-    alexa.resources = languageStrings;
-    alexa.dynamoDBTableName = 'yelpUserSearchLocation';
-    alexa.registerHandlers(handlers, newSessionHandlers, setupHandlers, startHandlers);
-    alexa.execute();
-};
-
-//this.event.session
+export class Handler {
+    constructor(event: Alexa.RequestBody, context: Alexa.Context, callback: Function) {
+        let alexa = Alexa.handler(event, context);
+        alexa.appId = APP_ID;
+        alexa.resources = languageStrings;
+        alexa.registerHandlers(handlers, newSessionHandlers, setupHandlers, mainHandlers, resultsHandlers, choosePriceHandlers, chooseFoodtypeHandlers);
+        alexa.execute();
+    }
+}
