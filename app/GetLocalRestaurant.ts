@@ -28,7 +28,7 @@ export class Yelp {
     accessToken: string;
 
     constructor(userLocation: string) {
-        this.accessToken = "F7oBpzlh4_5SrBS3b5Aa0CrKm2l6J3YEdyWL1L0AOWy9-W9-SKsnkryP600DzT1Wunx26cl5Fh88ow07nFAOEvw49O0k2jyAN3VB7f1lp38asjF2COmyXKy1xNNUWHYx";
+        this.accessToken = "<access_token>";
         this.location = userLocation;
     }
 
