@@ -25,7 +25,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(qs.stringify({ client_id: 'guDpGG6MgGDGzKOPvgxH_g',
-  client_secret: 'Zum1vrfrstaEdUTT1fTN1UjGMYrGCQ92sxxmAAUNM8PiorZkVKZU9PSFLYc3sFt5',
+req.write(qs.stringify({ client_id: '<client_id>',
+  client_secret: '<client_secret>',
   grant_type: 'client_credentials' }));
 req.end();
